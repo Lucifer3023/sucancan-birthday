@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#02040b">
+  <meta name="description" content="从旋转的银河出发，飞近地球，定位河南，送上粉色三维粒子蛋糕与绚丽烟花。">
+  <title>星河来信 · 从银河到河南</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23030817'/%3E%3Cpath d='m32 8 6 18 18 6-18 6-6 18-6-18-18-6 18-6Z' fill='%23bbd8ff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script src="vendor/three.min.js" defer></script>
+  <script src="galaxy-reference.js" defer></script>
+  <script src="galaxy.js" defer></script>
+  <script src="earth.js" defer></script>
+  <script src="cake.js" defer></script>
+  <script src="cake-bloom.js" defer></script>
+  <script src="heart-wish.js" defer></script>
+  <script src="fireworks.js" defer></script>
+  <script src="star-tunnel.js" defer></script>
+  <script src="flight.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main id="universe" aria-label="银河到河南的连续三维星空旅程">
+    <div id="sceneHost" aria-label="三维宇宙"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="wordmark" href="#" id="brandHome"><span class="brand-star">✧</span><span>星河来信<small>A JOURNEY TO YOU</small></span></a>
+      <ol class="journey-steps" aria-label="旅程进度"><li data-step="0" class="active"><i></i><span>银河</span></li><li data-step="1"><i></i><span>地球</span></li><li data-step="2"><i></i><span>河南</span></li><li data-step="3"><i></i><span>生日微光</span></li></ol>
+      <button id="resetJourney" class="reset-button" type="button" aria-label="重新开始星河旅程"><span>↺</span><small>重新漫游</small></button>
+    </header>
+
+    <div class="scene-coordinate"><span id="sceneNumber">01</span><i></i><span id="sceneName">MILKY WAY</span></div>
+    <aside id="birthdayMascot" class="birthday-mascot" aria-label="库洛米举着小苏生日快乐的牌子，旁边是一只粉色小蛋糕" hidden><img src="assets/kuromi-birthday-sign-cake.png" alt="库洛米举牌：小苏生日快乐，22岁；旁边有粉色小蛋糕" width="1254" height="1254" decoding="async"></aside>
+    <svg class="solar-guide" id="solarGuide" aria-hidden="true" hidden><path id="solarGuidePath" /></svg>
+    <div class="solar-anchor" id="solarAnchor" aria-hidden="true" hidden><span class="target-orbit"><i></i></span></div>
+    <button class="world-target solar-target" id="solarTarget" type="button" aria-label="点击太阳系入口，开始寻找地球" disabled><span class="target-label"><span class="target-kicker">旅程入口</span><strong>太阳系 <span aria-hidden="true">↗</span></strong><small>点这里 · 找到地球</small></span></button>
+    <button class="world-target henan-target" id="henanTarget" type="button" aria-label="点击地球上的河南省" hidden><span class="target-orbit"><i></i></span><span class="target-label">中国 · 河南<small>点击 · 靠近这一束星光</small></span></button>
+    <div class="province-caption" id="provinceCaption" hidden><i></i><span>河南省<small>34.76° N · 113.67° E</small></span></div>
+    <div class="earth-controls" id="earthControls" hidden><button id="rotateEarthLeft" type="button" aria-label="向左旋转地球">↶</button><span>拖动地球 · 自由旋转</span><button id="rotateEarthRight" type="button" aria-label="向右旋转地球">↷</button></div>
+    <div class="zoom-controls" id="zoomControls" aria-label="三维场景缩放"><button type="button" id="zoomOut" aria-label="缩小粒子场景">−</button><span id="zoomValue" aria-live="polite">100%</span><button type="button" id="zoomIn" aria-label="放大粒子场景">＋</button><button type="button" id="zoomReset" aria-label="重置缩放">↺</button></div>
+
+    <section class="story" id="story" aria-live="polite">
+      <p class="eyebrow" id="storyEyebrow">SOMEWHERE IN THE UNIVERSE</p>
+      <h1 id="storyTitle">从银河，<br>找到你。</h1>
+      <p class="story-description" id="storyDescription">亿万颗星光，缓缓旋转。<br>轻触星空，看光粒回应；找到蓝色光标，开启旅程。</p>
+      <button class="primary-action" id="primaryAction" type="button" disabled><span id="actionText">寻找地球</span><span class="action-arrow">↗</span></button>
+      <button class="candle-view" id="viewCandles" type="button" hidden>俯瞰心形蜡烛 ↗</button>
+      <span class="interaction-hint" id="interactionHint">拖动探索银河 · 轻点泛起星光</span>
+    </section>
+    <div class="travel-caption" id="travelCaption" aria-live="polite"><span></span><p>沿着星光，慢慢靠近。</p></div>
+    <footer class="bottom-bar"><span id="bottomLabel">ONE UNIVERSE · ONE SPECIAL DAY</span><span class="render-note"><i></i> 在同一片星空里，继续靠近</span></footer>
+
+    <div class="loading-screen" id="loadingScreen"><div class="loading-orbit"><i></i></div><p id="loadingText">正在点亮这片宇宙</p><span>GALAXY · EARTH · HENAN</span></div>
+    <div class="fatal" id="fatalError" hidden><span>✧</span><h2>星空暂时未能打开</h2><p id="fatalMessage">请使用支持 WebGL 的浏览器重新打开。</p><button id="reloadPage" type="button">重新加载</button></div>
+    <div class="toast" id="toast" role="status"></div>
+  </main>
+</body>
+</html>
